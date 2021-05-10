@@ -1,0 +1,6 @@
+module.exports = {
+  FACULTY: 'FACULTY',
+  STUDENT: 'STUDENT',
+  PERSONNEL: 'PERSONNEL',
+  OFFICIAL: 'OFFICIAL'
+}
