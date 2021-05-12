@@ -1,7 +1,7 @@
 const express = require ('express');
 
 const appAuth = require ('../middleware/auth/app');
-// const devAuth = require ('../middleware/auth/dev');
+// const devAuth = require ('../middleware/oauth/dev');
 const app = require ("../controllers/app");
 
 const router = express.Router();

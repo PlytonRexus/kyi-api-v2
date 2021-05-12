@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const schema = mongoose.Schema({
-
+const schema = new mongoose.Schema({
+  // upvotes, downvotes
 }, {
   timestamps: true,
   collection: 'answers'

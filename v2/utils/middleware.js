@@ -1,4 +1,4 @@
-const MongooseStore = require('express-brute-mongoose');
+const MongooseStore = require('express-brute-mongoose')
 const BaseExceptionHandler = require('../core/BaseExceptionHandler')
 
 /**
@@ -12,37 +12,36 @@ const BaseExceptionHandler = require('../core/BaseExceptionHandler')
  * @param {Response} res
  * @param {NextFunction} next
  */
-let setRequestTimeout =
+const setRequestTimeout =
     function (req, res, next) {
-    req.setTimeout(
-      parseInt(
-        process.env.REQUEST_TIMEOUT || 30,
-        10) * 60 * 1000);
-    next();
-  },
-
-  setSecurityHeader = function () {
-    return (require('helmet')(...arguments));
-  },
-
-  bruteforceInstance = function (store, retries) {
-    const ExpressBrute = require('express-brute');
-    if (store instanceof MongooseStore) {
-      const opts = {
-        freeRetries: retries || 6,
-        handleStoreError: BaseExceptionHandler
-      };
-      return (new ExpressBrute(store, opts));
+      req.setTimeout(
+        parseInt(
+          process.env.REQUEST_TIMEOUT || 30,
+          10) * 60 * 1000)
+      next()
     }
-  },
 
-  bruteforce = function () {
-    const Bruteforce = require('../models/Bruteforce');
-    const store = new MongooseStore(Bruteforce);
-    return bruteforceInstance(store);
+const setSecurityHeader = function () {
+  return (require('helmet')(...arguments))
+}
+
+const bruteforceInstance = function (store, retries) {
+  const ExpressBrute = require('express-brute')
+  if (store instanceof MongooseStore) {
+    const opts = {
+      freeRetries: retries || 6,
+      handleStoreError: BaseExceptionHandler
+    }
+    return (new ExpressBrute(store, opts))
   }
+}
 
-  module.exports = {
-    bruteforce, setSecurityHeader, setRequestTimeout
-  }
+const bruteforce = function () {
+  const Bruteforce = require('../models/Bruteforce')
+  const store = new MongooseStore(Bruteforce)
+  return bruteforceInstance(store)
+}
 
+module.exports = {
+  bruteforce, setSecurityHeader, setRequestTimeout
+}

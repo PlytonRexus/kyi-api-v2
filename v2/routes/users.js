@@ -5,6 +5,6 @@ class Users extends BaseRoute {
 }
 
 const usersRoutes = new Users(
-  '/users', {}, usersController, null)
+  '/users', usersController, null)
 
 module.exports = usersRoutes.generateControllers()

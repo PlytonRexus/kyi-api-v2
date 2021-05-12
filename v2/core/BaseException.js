@@ -8,7 +8,7 @@ const { INTERNAL_SERVER_ERROR } =
  */
 class BaseException extends Error {
   /**
-   * Creates an instance of BaseException.
+   * Creates an instance of KYIBaseException.
    *
    * @param {object} { name: string, errors: array<object>, thrownBy: string,
    * critical: boolean, message: string, code: number }

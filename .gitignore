@@ -124,6 +124,9 @@ dist/
 tmp/
 temp/
 
+# Temporary and data files
 corr.js
 KYI.postman_collection.json
 
+# Environment files
+config/environment/prod.env

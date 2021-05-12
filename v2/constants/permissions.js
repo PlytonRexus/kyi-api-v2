@@ -1,7 +1,9 @@
 const permissions = {
   DEAN: {
-    users: [],
-    grievances: []
+    users: ['write:self', 'read:self', 'read:others' ],
+    grievances: [],
+    answers: [],
+    votes: []
   },
   STUDENT: {
     users: [],

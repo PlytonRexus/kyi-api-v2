@@ -1,9 +1,9 @@
 class BaseRoute {
-  constructor (root, entity, controller, router) {
+  constructor (root, controller, router) {
     this.router = require('express').Router()
     this.root = root
-    this.entity = entity
     this.controller = controller
+    this.entity = controller.Entity
   }
 
   generateControllers () {
@@ -15,10 +15,10 @@ class BaseRoute {
     this.router.post(this.root, this.controller.addOne)
 
     // PATCH
-    this.router.patch(this.root, this.controller.updateOne)
+    this.router.patch(this.root + '/:id', this.controller.updateOne)
 
     // DELETE
-    this.router.delete(this.root, this.controller.deleteOne)
+    this.router.delete(this.root + '/:id', this.controller.deleteOne)
 
     return this.router
   }

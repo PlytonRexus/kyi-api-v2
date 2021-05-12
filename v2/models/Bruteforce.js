@@ -1,4 +1,8 @@
-const mongoose = require("mongoose");
-const bruteForceSchema = require("express-brute-mongoose/dist/schema");
+const mongoose = require('mongoose')
+const bruteforceSchemaDesign = require('express-brute-mongoose/dist/schema')
 
-module.exports = mongoose.model('bruteforce', bruteForceSchema);
+const bruteforceSchema = new mongoose.Schema(bruteforceSchemaDesign, {
+  timestamps: true
+})
+
+module.exports = mongoose.model('bruteforce', bruteforceSchema)
