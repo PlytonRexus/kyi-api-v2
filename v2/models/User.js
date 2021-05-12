@@ -110,5 +110,5 @@ schema.plugin(safeDelete, {
   deletedBy: true,
   deletedAt: true
 })
-
-module.exports = mongoose.model('User', schema, 'users')
+const User = mongoose.model('User', schema, 'users')
+module.exports = User
