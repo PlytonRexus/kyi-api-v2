@@ -39,13 +39,13 @@
 │   ├── controller.js
 │   ├── models
 │   │   ├── AccessToken.js
-│   │   ├── App.js
+│   │   ├── Client.js
 │   │   └── RequestToken.js
 │   ├── routes.js
 │   ├── utils
 │   │   ├── accessTokens.js
 │   │   ├── clientSecrets.js
-│   │   ├── otp.js
+│   │   ├── otps.js
 │   │   └── requestTokens.js
 │   └── views
 │       ├── index.html

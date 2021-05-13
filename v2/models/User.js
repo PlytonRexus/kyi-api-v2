@@ -7,6 +7,8 @@ const { sexes, clubs } = require('../constants/userValues')
 const roles = require('../constants/roles')
 const { isAdmissionNumber, isHouse, isURI, isEmail, isPhoneNumber } = require('../utils/validation')
 
+const opts = new BaseModelOptions()
+
 const schema = new mongoose.Schema({
   house: {
     type: Number,
@@ -103,12 +105,8 @@ const schema = new mongoose.Schema({
     default: 1,
     max: 10000000
   }
-}, new BaseModelOptions())
+}, opts.schemaOptions)
 
-schema.plugin(safeDelete, {
-  overrideMethods: true,
-  deletedBy: true,
-  deletedAt: true
-})
+schema.plugin(safeDelete, opts.safeDeleteOptions)
 const User = mongoose.model('User', schema, 'users')
 module.exports = User

@@ -7,7 +7,7 @@ const schema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  token: {
+  otpHash: {
     type: String,
     trim: true,
     required: true
@@ -25,6 +25,5 @@ const schema = new mongoose.Schema({
 }, opts.schemaOptions)
 
 schema.plugin(opts.safeDeleteOptions)
-
-const RequestToken = mongoose.model('RequestToken', schema, 'request_tokens')
-module.exports = RequestToken
+const OTP = mongoose.model('OTP', schema)
+module.exports = OTP

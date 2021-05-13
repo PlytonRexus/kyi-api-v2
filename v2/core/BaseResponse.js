@@ -31,6 +31,7 @@ class BaseResponse {
       deleted: this.resource
     }
   }
+
 }
 
 module.exports = BaseResponse

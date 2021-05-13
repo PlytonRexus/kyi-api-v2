@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken')
-const User = require('../../models/User')
 
 const secret = process.env.ACCESS_TOKEN_SECRET || 'secret'
-const app = process.env.APP_NAME || 'KYI'
+const appName = process.env.APP_NAME || 'KYI'
 
-const generateAccessToken = function (user, app) {
+const generateAccessToken = function (user, client, isSystem) {
   return jwt.sign({
     sub: user._id,
-    iss: app,
-    aud: app._id,
-    usr: JSON.stringify(user)
+    iss: appName,
+    aud: client._id,
+    usr: JSON.stringify(user),
+    sys: !!isSystem
   }, secret, {
     expiresIn: '1000d'
   })
@@ -22,3 +22,5 @@ const verifyAccessToken = function(token) {
     return false
   }
 }
+
+module.exports = {generateAccessToken, verifyAccessToken}

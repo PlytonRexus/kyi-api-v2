@@ -10,7 +10,7 @@ const KYIBadRequestException = require('../exceptions/KYIBadRequestException')
 const KYIUnauthorisedException = require('../exceptions/KYIUnauthorisedException')
 const BaseException = require('./BaseException')
 
-function BaseExceptionHandler (E) {
+const BaseExceptionHandler = function (E) {
   if (!E || !(E instanceof Error)) {
     throw new KYIInternalServerException({
       message: 'No error supplied',
