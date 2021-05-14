@@ -27,7 +27,7 @@ exports.initialiseSystemLoginFlow = async function (req, res) {
     if (!!client) {
       debug('Client found')
       // check user exists --> User.findOne
-      let user = await User.findOne({ [body['usernameType']]: body.username })
+      let user = await User.findOne({ [body['usernameType']]: { $regex: new RegExp(body.username), $options: 'i'  } })
       if (!!user) {
         // generate OTP, mail it, hash it, save it --> generateOTP, mailer.send, OTP.save
         let generated = await generateAndSaveOTP(user, client)
@@ -55,9 +55,9 @@ exports.verifySystemOTP = async function(req, res) {
       throw new KYIBadRequestException({ message: 'All required properties not supplied' })
 
     // find the OTP --> OTP.findOne(clientId, userId)
-    let otpEntity = OTP.findOne({ used: false, otpHash: body.otp, userId: body.userId })
+    let otpEntity = await OTP.findOne({ used: false, otpHash: body.otp, userId: body.userId })
     if(!!otpEntity) {
-      let [user, client] = Promise.all([
+      let [user, client] = await Promise.all([
         User.findById(otpEntity.userId),
         Client.findById(otpEntity.clientId)
       ])

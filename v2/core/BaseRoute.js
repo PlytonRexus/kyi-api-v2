@@ -8,7 +8,7 @@ class BaseRoute {
 
   generateControllers () {
     // GET
-    this.router.get(this.root + '/:id', this.controller.getOne)
+    this.router.get(this.root + ':id', this.controller.getOne)
     this.router.get(this.root, this.controller.getAll)
 
     // POST
