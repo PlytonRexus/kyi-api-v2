@@ -1,5 +1,10 @@
 const propsMissingIn = function (object, requiredProps = []) {
-  return requiredProps.every(p => Object.keys(object).includes(p))
+  let cnt = 0
+  requiredProps.forEach(p => {
+    if (propExists(p, object))
+      cnt++
+  })
+  return cnt === requiredProps.length
 }
 
 const propExists = function (key, object) {
