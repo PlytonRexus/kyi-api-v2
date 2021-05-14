@@ -5,7 +5,7 @@
   "main": "../server.js",
   "scripts": {
     "test": "mocha",
-    "start": "./node_modules/.bin/env-cmd -f ./config/environment/prod.env node ./bin/www",
+    "start": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env node ./bin/www",
     "dev": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./bin/www",
     "fix": "standard --fix",
     "lint": "standard",
