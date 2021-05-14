@@ -31,6 +31,7 @@ exports.initialiseSystemLoginFlow = async function (req, res) {
       if (!!user) {
         // generate OTP, mail it, hash it, save it --> generateOTP, mailer.send, OTP.save
         let generated = await generateAndSaveOTP(user, client)
+        debug('OTP generated')
         await send(templates.LOGIN_OTP, { to: user['instituteEmail'] }, {
           otp: generated.otp
         })
