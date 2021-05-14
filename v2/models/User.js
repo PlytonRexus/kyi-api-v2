@@ -58,7 +58,7 @@ const schema = new mongoose.Schema({
   },
   clubs: [{
     type: String,
-    enum: clubs
+    // enum: clubs
   }],
   about: {
     type: String,

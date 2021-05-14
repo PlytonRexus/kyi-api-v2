@@ -5,11 +5,11 @@
   "main": "../server.js",
   "scripts": {
     "test": "mocha",
-    "start": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env node ./bin/www",
+    "start": "./node_modules/.bin/env-cmd -f ./config/environment/prod.env node ./bin/www",
     "dev": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./bin/www",
     "fix": "standard --fix",
     "lint": "standard",
-    "test-mailer":  "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./v2/utils/mail/mailer.js"
+    "test-mailer": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./v2/utils/mail/mailer.js"
   },
   "keywords": [
     "api",
@@ -39,6 +39,8 @@
   },
   "devDependencies": {
     "mocha": "^8.4.0",
+    "mongoose-seed": "^0.6.0",
+    "mongoose-seed-csv": "0.0.4",
     "nodemon": "^2.0.4",
     "standard": "^16.0.3"
   },

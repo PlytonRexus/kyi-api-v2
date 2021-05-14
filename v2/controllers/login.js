@@ -10,6 +10,7 @@ const { generateAndSaveOTP } = require('../oauth/utils/otps')
 const { propsMissingIn } = require('../utils/objectHandler')
 const send = require('../utils/mail/mailer')
 const OTP = require('../oauth/models/OTP')
+const { isValidValue } = require('../utils/objectHandler')
 const { generateAccessToken } = require('../oauth/utils/accessTokens')
 
 exports.initialiseSystemLoginFlow = async function (req, res) {
@@ -22,7 +23,11 @@ exports.initialiseSystemLoginFlow = async function (req, res) {
       throw new KYIBadRequestException({ message: 'All required properties not supplied' })
 
     debug('All properties exist')
+    const validUsernameTypes = ['_id', 'instituteEmail', 'admissionNumber']
+    if (!isValidValue(body.usernameType, validUsernameTypes))
+      throw new KYIBadRequestException({ message: 'Only ' +  validUsernameTypes.join(', ') + ' are allowed as usernames' })
     // find client and check if it is system --> Client.findOne
+    // TODO: Add secret check here
     let client = await Client.findOne({ _id: body.clientId }) // , secret: body.secret, isSystem: true
     if (!!client) {
       debug('Client found')
@@ -56,7 +61,7 @@ exports.verifySystemOTP = async function(req, res) {
       throw new KYIBadRequestException({ message: 'All required properties not supplied' })
 
     // find the OTP --> OTP.findOne(clientId, userId)
-    let otpEntity = await OTP.findOne({ used: false, otpHash: body.otp, userId: body.userId })
+    let otpEntity = await OTP.findOne({ used: false, otpHash: body.otp, userId: body.userId, expires: { $gt: Date.now() } })
     if(!!otpEntity) {
       let [user, client] = await Promise.all([
         User.findById(otpEntity.userId),

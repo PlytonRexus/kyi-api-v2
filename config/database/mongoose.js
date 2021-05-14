@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URL || dbUrlDev,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
-  }).then(res => debug('Connected to MongoDB'))
+  }).then(res => debug('Connected to mongodb'))
   .catch(err => debug(err.message || err))
 
 module.exports = mongoose
