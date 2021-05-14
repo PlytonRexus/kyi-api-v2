@@ -6,16 +6,16 @@ let send = async function (template, opts, variables) {
   if (!(template instanceof Template))
     throw new KYIInternalServerException({message: 'Invalid template'})
   try {
-    opts.html = await template.getBody(variables);
-    opts.subject = template.getSubject();
+    opts.html = await template.getBody(variables) || "KYI attempted to deliver a message but failed :("
+    opts.subject = template.getSubject() || " Failed delivery of message"
     opts.from = opts.from || process.env.APP_NAME
       + "<" + process.env.EMAIL_ID + ">" || process.env.EMAIL_ID;
-    opts.user = process.env.EMAIL_ID;
+    opts.user = process.env.EMAIL_ID
     opts.replyTo = opts.replyTo || opts.from;
     opts.pass = process.env.EMAIL_PASSWORD;
 
     if (opts.to && !(opts.to instanceof Array))
-      opts.to = opts.to.split(",");
+      opts.to = opts.to.split(",")
 
     const send = gmail(opts);
     return await send();

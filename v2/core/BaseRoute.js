@@ -1,7 +1,7 @@
 class BaseRoute {
   constructor (root, controller, router) {
     this.router = require('express').Router()
-    this.root = root
+    this.root = root || "/"
     this.controller = controller
     this.entity = controller.Entity
   }

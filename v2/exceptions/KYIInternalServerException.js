@@ -10,7 +10,7 @@ class KYIInternalServerException extends BaseException {
     super({
       message:
         'This is probably an error on the server' +
-          'and has nothing to do with your request.' ||
+          ' and has nothing to do with your request.' ||
         message,
       name: 'Internal server error' || name,
       critical: critical || false,

@@ -4,8 +4,10 @@ const router = require('express').Router()
 // router.use('/search', require('./search'))
 router.use('/users', require('./users'))
 
-router.use('/login/oauth', require('../oauth/routes'))
+router.use('/clients', require('../oauth/routes/client'))
 
-router.use('/login', require('./login'))
+router.use('/login/oauth', require('../oauth/routes/login'))
+
+router.use('/login/system', require('./login'))
 
 module.exports = router

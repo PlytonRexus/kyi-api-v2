@@ -78,7 +78,8 @@ const schema = new mongoose.Schema({
     type: String,
     lowercase: true,
     validate: isEmail,
-    trim: true
+    trim: true,
+    required: true
   },
   personalEmail: {
     type: String,
@@ -98,7 +99,8 @@ const schema = new mongoose.Schema({
   roles: [{
     type: String,
     enum: Object.keys(roles),
-    trim: true
+    trim: true,
+    default: roles.STUDENT
   }],
   reputation: {
     type: Number,
@@ -106,6 +108,18 @@ const schema = new mongoose.Schema({
     max: 10000000
   }
 }, opts.schemaOptions)
+
+schema.pre('save', function (next) {
+  const user  = this
+  user.newUser = user.isNew
+  if (!user.roles.length) {
+    user.roles.push(roles.STUDENT)
+  } else {
+    let rolesSet = new Set(user.roles)
+    user.roles = [...rolesSet]
+  }
+  next()
+})
 
 schema.plugin(safeDelete, opts.safeDeleteOptions)
 const User = mongoose.model('User', schema, 'users')
