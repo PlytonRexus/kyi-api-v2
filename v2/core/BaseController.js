@@ -7,11 +7,11 @@ const { compressImageBuffer } = require('../utils/content')
 const BaseResponse = require('./BaseResponse')
 
 class BaseController {
-  constructor (entity) {
-    this.Entity = entity
+  constructor (Entity) {
+    this.Entity = Entity
   }
 
-  async getAll (req, res) {
+  getAll = async (req, res) => {
     const opts = handlePaging(req.query.skip, req.query.limit)
     try {
       const start = Date.now()
@@ -28,7 +28,7 @@ class BaseController {
     }
   }
 
-  async getOne (req, res) {
+  getOne = async (req, res) => {
     try {
       const resource = await this.Entity.findById(req.params.id)
       const rp = new BaseResponse(resource, OK, {})
@@ -39,7 +39,7 @@ class BaseController {
     }
   }
 
-  async addOne (req, res) {
+  addOne = async (req, res) => {
     try {
       const doc = new this.Entity(req.body)
       if (req.file) {
@@ -56,7 +56,7 @@ class BaseController {
     }
   }
 
-  async updateOne (req, res) {
+  updateOne = async (req, res) => {
     try {
       const resource = await this.Entity.findOneAndUpdate({
         _id: req.params.id
@@ -69,7 +69,7 @@ class BaseController {
     }
   }
 
-  async deleteOne (req, res) {
+  deleteOne = async (req, res) => {
     try {
       const resource = await this.Entity.findOneAndDelete({
         _id: req.params.id

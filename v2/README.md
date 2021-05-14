@@ -36,12 +36,12 @@
 │   ├── User.js
 │   └── Vote.js
 ├── oauth
-│   ├── controller.js
+│   ├── login.js
 │   ├── models
 │   │   ├── AccessToken.js
 │   │   ├── Client.js
 │   │   └── RequestToken.js
-│   ├── routes.js
+│   ├── login.js
 │   ├── utils
 │   │   ├── accessTokens.js
 │   │   ├── clientSecrets.js

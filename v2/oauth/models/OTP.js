@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const safeDelete = require('mongoose-delete')
 const BaseModelOptions = require('../../core/BaseModelOptions')
 
 const opts = new BaseModelOptions()
@@ -24,6 +25,6 @@ const schema = new mongoose.Schema({
   }
 }, opts.schemaOptions)
 
-schema.plugin(opts.safeDeleteOptions)
+schema.plugin(safeDelete, opts.safeDeleteOptions)
 const OTP = mongoose.model('OTP', schema)
 module.exports = OTP

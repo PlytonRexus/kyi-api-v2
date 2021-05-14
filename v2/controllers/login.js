@@ -14,21 +14,26 @@ const { generateAccessToken } = require('../oauth/utils/accessTokens')
 
 exports.initialiseSystemLoginFlow = async function (req, res) {
 
+  const debug = require('debug')('v2:controllers:login:system:initialise')
   const requiredProps = [ 'clientId', 'clientSecret', 'username', 'usernameType' ]
   const body = req.body
   try {
     if (propsMissingIn(body, requiredProps))
       throw new KYIBadRequestException({ message: 'All required properties not supplied' })
 
+    debug('All properties exist')
     // find client and check if it is system --> Client.findOne
-    let client = await Client.findOne({ _id: body.clientId, secret: body.secret, isSystem: true })
+    let client = await Client.findOne({ _id: body.clientId }) // , secret: body.secret, isSystem: true
     if (!!client) {
+      debug('Client found')
       // check user exists --> User.findOne
       let user = await User.findOne({ [body['usernameType']]: body.username })
       if (!!user) {
         // generate OTP, mail it, hash it, save it --> generateOTP, mailer.send, OTP.save
         let generated = await generateAndSaveOTP(user, client)
-        await send(templates.REGISTRATION, { to: user['instituteEmail'] })
+        await send(templates.LOGIN_OTP, { to: user['instituteEmail'] }, {
+          otp: generated.otp
+        })
 
         // respond with userId
         let resp = new BaseResponse({ userId: user['_id'] }, httpCodes.OK, {})
@@ -42,7 +47,7 @@ exports.initialiseSystemLoginFlow = async function (req, res) {
 }
 
 exports.verifySystemOTP = async function(req, res) {
-
+  const debug = require('debug')('v2:controllers:login:system:verifyOTP')
   const requiredProps = [ 'otp', 'userId' ]
   const body = req.body
   try {

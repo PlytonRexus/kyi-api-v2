@@ -8,7 +8,8 @@
     "start": "./node_modules/.bin/env-cmd -f ./config/environment/prod.env node ./bin/www",
     "dev": "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./bin/www",
     "fix": "standard --fix",
-    "lint": "standard"
+    "lint": "standard",
+    "test-mailer":  "./node_modules/.bin/env-cmd -f ./config/environment/dev.env nodemon ./v2/utils/mail/mailer.js"
   },
   "keywords": [
     "api",
