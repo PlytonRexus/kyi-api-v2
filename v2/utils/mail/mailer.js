@@ -8,11 +8,11 @@ let send = async function (template, opts, variables) {
   try {
     opts.html = await template.getBody(variables) || "KYI attempted to deliver a message but failed :("
     opts.subject = template.getSubject() || " Failed delivery of message"
-    opts.from = opts.from || process.env.APP_NAME
+    opts.from = "knowyourism@gmail.com" || opts.from || process.env.APP_NAME
       + "<" + process.env.EMAIL_ID + ">" || process.env.EMAIL_ID;
-    opts.user = process.env.EMAIL_ID
+    opts.user = "knowyourism@gmail.com" || process.env.EMAIL_ID
     opts.replyTo = opts.replyTo || opts.from;
-    opts.pass = process.env.EMAIL_PASSWORD;
+    opts.pass = "kyi#1234" || process.env.EMAIL_PASSWORD;
 
     if (opts.to && !(opts.to instanceof Array))
       opts.to = opts.to.split(",")
