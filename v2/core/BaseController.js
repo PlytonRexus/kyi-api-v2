@@ -5,6 +5,7 @@ const { GET_ALL_KEYS } = require('../constants/response')
 const { OK, CREATED } = require('../constants/httpCodes')
 const { compressImageBuffer } = require('../utils/content')
 const BaseResponse = require('./BaseResponse')
+const BaseExceptionHandler = require('./BaseExceptionHandler')
 
 class BaseController {
   constructor (Entity) {
@@ -23,8 +24,8 @@ class BaseController {
       res.status(rp.status).json(rp.getAllResponse)
     } catch (err) {
       debug(err)
-      // TODO: Error classes
-      res.status(500).json(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
     }
   }
 
@@ -34,8 +35,9 @@ class BaseController {
       const rp = new BaseResponse(resource, OK, {})
       res.status(rp.status).json(rp.getOneResponse)
     } catch (err) {
-      // TODO: Error classes
-      res.status(500).json(err)
+      debug(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
     }
   }
 
@@ -52,7 +54,8 @@ class BaseController {
       res.status(rp.status).json(rp.postResponse)
     } catch (err) {
       debug(err)
-      res.status(500).json(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
     }
   }
 
@@ -64,7 +67,8 @@ class BaseController {
       const rp = new BaseResponse(resource, OK, {})
       res.status(rp.status).json(rp.patchResponse)
     } catch (err) {
-      res.status(500).json(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
       debug(err)
     }
   }
@@ -77,7 +81,8 @@ class BaseController {
       const rp = new BaseResponse(resource, OK, {})
       res.status(rp.status).json(rp.patchResponse)
     } catch (err) {
-      res.status(500).json(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
       debug(err)
     }
   }

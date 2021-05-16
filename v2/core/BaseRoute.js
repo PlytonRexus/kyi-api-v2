@@ -22,6 +22,11 @@ class BaseRoute {
 
     return this.router
   }
+
+  additionalControllers() {
+
+  }
+
 }
 
 module.exports = BaseRoute

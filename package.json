@@ -40,7 +40,6 @@
   "devDependencies": {
     "mocha": "^8.4.0",
     "mongoose-seed": "^0.6.0",
-    "mongoose-seed-csv": "0.0.4",
     "nodemon": "^2.0.4",
     "standard": "^16.0.3"
   },

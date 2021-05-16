@@ -6,6 +6,10 @@ router.use('/users', require('./users'))
 
 router.use('/clients', require('../oauth/routes/client'))
 
+router.use('/grievances', require('./grievances'))
+
+router.use('/answers', require('./answers'))
+
 router.use('/login/oauth', require('../oauth/routes/login'))
 
 router.use('/login/system', require('./login'))

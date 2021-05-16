@@ -1,4 +1,6 @@
 const validator = require('validator')
+const Filter = require('bad-words'),
+  filter = new Filter()
 
 const KYIValidationException = require('../exceptions/KYIValidationException')
 const { admissionNumberRegex } = require('../constants/regularExpressions')
@@ -32,11 +34,14 @@ const isURI = validator.isURL
 
 const isMimeType = validator.isMimeType
 
+const isClean = v => !filter.isProfane(v)
+
 module.exports = {
   isAdmissionNumber,
   isPhoneNumber,
   isEmail,
   isURI,
   isHouse,
-  isMimeType
+  isMimeType,
+  isClean
 }

@@ -21,8 +21,8 @@ const setRequestTimeout =
       next()
     }
 
-const setSecurityHeader = function () {
-  return (require('helmet')(...arguments))
+const setSecurityHeaders = function (opts) {
+  return (require('helmet')(opts || { contentSecurityPolicy: false }))
 }
 
 const bruteforceInstance = function (store, retries) {
@@ -43,5 +43,5 @@ const bruteforce = function () {
 }
 
 module.exports = {
-  bruteforce, setSecurityHeader, setRequestTimeout
+  bruteforce, setSecurityHeaders, setRequestTimeout
 }
