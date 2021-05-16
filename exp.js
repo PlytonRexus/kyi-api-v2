@@ -21,6 +21,7 @@ exp.use(express.urlencoded({ extended: true }))
 exp.use(morgan('dev'))
 exp.use(cookieParser())
 exp.use(cors())
+exp.use(require('./v2/utils/middleware').setSecurityHeaders())
 
 exp.use('/' + apiV1Url, require('./v1/routes/index'))
 exp.use('/' + apiV2Url, require('./v2/routes/index'))

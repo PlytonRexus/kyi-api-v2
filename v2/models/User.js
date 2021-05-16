@@ -18,7 +18,8 @@ const schema = new mongoose.Schema({
     type: String,
     validate: isAdmissionNumber,
     unique: true,
-    trim: true
+    trim: true,
+    immutable: true
   },
   sex: {
     type: String,
@@ -58,7 +59,7 @@ const schema = new mongoose.Schema({
   },
   clubs: [{
     type: String,
-    enum: clubs
+    // enum: clubs
   }],
   about: {
     type: String,
@@ -79,7 +80,8 @@ const schema = new mongoose.Schema({
     lowercase: true,
     validate: isEmail,
     trim: true,
-    required: true
+    required: true,
+    immutable: true
   },
   personalEmail: {
     type: String,

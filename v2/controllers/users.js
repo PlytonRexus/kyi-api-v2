@@ -1,9 +1,9 @@
 const BaseController = require('../core/BaseController')
 const User = require('../models/User')
 
-class Users extends BaseController {
+class UsersController extends BaseController {
 }
 
-const usersController = new Users(User)
+const usersController = new UsersController(User)
 
 module.exports = usersController

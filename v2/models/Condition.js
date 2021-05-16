@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
+const safeDelete = require('mongoose-delete')
 const BaseModelOptions = require('../core/BaseModelOptions')
 
+const opts = new BaseModelOptions()
 const schema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    immutable: true
   },
   patterns: [
     {
@@ -18,6 +21,8 @@ const schema = new mongoose.Schema({
       }
     }
   ]
-}, new BaseModelOptions())
+}, opts.schemaOptions)
+
+schema.plugin(safeDelete, opts.safeDeleteOptions)
 
 module.exports = mongoose.model('Condition', schema, "conditions")

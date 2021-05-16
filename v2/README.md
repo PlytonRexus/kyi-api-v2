@@ -12,7 +12,7 @@
 │   ├── url.js
 │   └── userValues.js
 ├── controllers
-│   ├── posts.js
+│   ├── grievances.js
 │   └── users.js
 ├── core
 │   ├── BaseController.js
@@ -34,7 +34,7 @@
 │   ├── Condition.js
 │   ├── Grievance.js
 │   ├── User.js
-│   └── Vote.js
+│   └── GrievanceVote.js
 ├── oauth
 │   ├── login.js
 │   ├── models

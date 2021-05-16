@@ -9,21 +9,26 @@ const opts = new BaseModelOptions()
 const schema = new mongoose.Schema({
   secret: {
     type: String,
-    trim: true
+    trim: true,
+    immutable: true,
+    transform: val => 'HIDDEN_VALUE'
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    immutable: true
   },
   redirectURI: {
     type: String,
     required: true,
-    validate: isURI
+    validate: isURI,
+    immutable: true
   },
   isSystem: {
     type: Boolean,
-    default: false
+    default: false,
+    immutable: true
   }
 }, opts.schemaOptions)
 
