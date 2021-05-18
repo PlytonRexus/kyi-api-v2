@@ -1,5 +1,9 @@
 const MongooseStore = require('express-brute-mongoose')
+const debug = require('debug')('v2:utils:middleware')
+
 const BaseExceptionHandler = require('../core/BaseExceptionHandler')
+const { filterParams } = require('./parsers')
+const { includeParams } = require('./parsers')
 
 /**
  * Sets the request timeout in express for local environments
@@ -42,6 +46,13 @@ const bruteforce = function () {
   return bruteforceInstance(store)
 }
 
+const parseRequest = function (req, res, next) {
+  let params = req.query
+  if (params.filter) req.filterQuery = filterParams(params.filter)
+  if (params.include) req.includeQuery = includeParams(params.include)
+  next()
+}
+
 module.exports = {
-  bruteforce, setSecurityHeaders, setRequestTimeout
+  bruteforce, setSecurityHeaders, setRequestTimeout, parseRequest
 }

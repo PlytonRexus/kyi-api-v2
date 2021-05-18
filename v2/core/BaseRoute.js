@@ -1,3 +1,5 @@
+const { parseRequest } = require('../utils/middleware')
+
 class BaseRoute {
   constructor (root, controller, router) {
     this.router = require('express').Router()
@@ -8,8 +10,8 @@ class BaseRoute {
 
   generateControllers () {
     // GET
-    this.router.get(this.root + ':id', this.controller.getOne)
-    this.router.get(this.root, this.controller.getAll)
+    this.router.get(this.root + ':id', parseRequest, this.controller.getOne)
+    this.router.get(this.root, parseRequest, this.controller.getAll)
 
     // POST
     this.router.post(this.root, this.controller.addOne)

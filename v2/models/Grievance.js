@@ -36,10 +36,7 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-    immutable: true,
-    populate: {
-      select: 'name instituteEmail'
-    }
+    immutable: true
   }
 }, opts.schemaOptions)
 

@@ -1,4 +1,4 @@
-const GET_ALL_KEYS = 'Name Place Branch House Sex'
+const GET_ALL_KEYS = 'name city state department course house sex _id'
 
 module.exports = {
   GET_ALL_KEYS

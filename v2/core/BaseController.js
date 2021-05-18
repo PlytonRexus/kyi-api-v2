@@ -16,7 +16,8 @@ class BaseController {
     const opts = handlePaging(req.query.skip, req.query.limit)
     try {
       const start = Date.now()
-      const records = await this.Entity.find({}, GET_ALL_KEYS, opts) || []
+      const records = await this.Entity.find(
+        req.filterQuery || {}, req.includeQuery, opts) || []
       const queryTime = Date.now() - start
 
       const rp =
