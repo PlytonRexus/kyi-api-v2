@@ -24,7 +24,7 @@ router.get('/clubs', async function (req, res) {
   const json = await readFile(path.join(__dirname, '..', 'resources/seeddata/json', 'clubs.json'))
   const resource = JSON.parse(json)
   const rp = new BaseResponse(resource, OK, {})
-  res.status(rp.status).json(rp.getOneResponse)
+  res.status(rp.status).json(rp.getAllResponse)
 })
 
 module.exports = router
