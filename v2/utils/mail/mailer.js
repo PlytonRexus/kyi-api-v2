@@ -31,4 +31,6 @@ let send = async function (template, opts, variables) {
   }
 }
 
+const sendViaSendgrid = function (templates, opts, variables) {}
+
 module.exports = send

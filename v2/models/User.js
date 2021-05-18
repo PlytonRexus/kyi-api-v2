@@ -16,8 +16,8 @@ const schema = new mongoose.Schema({
   },
   admissionNumber: {
     type: String,
-    validate: isAdmissionNumber,
-    unique: true,
+    // validate: isAdmissionNumber,
+    // unique: true,
     trim: true,
     immutable: true
   },
@@ -92,7 +92,7 @@ const schema = new mongoose.Schema({
   phone: {
     type: String,
     trim: true,
-    validate: isPhoneNumber
+    // validate: isPhoneNumber
   },
   newUser: {
     type: Boolean,
@@ -102,12 +102,15 @@ const schema = new mongoose.Schema({
     type: String,
     enum: Object.keys(roles),
     trim: true,
-    default: roles.STUDENT
+    default: roles.FACULTY
   }],
   reputation: {
     type: Number,
     default: 1,
     max: 10000000
+  },
+  special: {
+    type: String
   }
 }, opts.schemaOptions)
 
