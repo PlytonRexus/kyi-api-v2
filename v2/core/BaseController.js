@@ -47,7 +47,7 @@ class BaseController {
       const doc = new this.Entity(req.body)
       if (req.file) {
         doc.photo = await compressImageBuffer(req.file.buffer, req.file.mimetype)
-        doc.format = req.file.mimetype
+        doc.photoFormat = req.file.mimetype
       }
 
       const resource = await doc.save()
@@ -87,6 +87,23 @@ class BaseController {
       debug(err)
     }
   }
+
+  getPhoto = async (req, res) => {
+    try {
+      const resource = await this.Entity.findById(req.params.id)
+      if (resource.photoURI)
+        res.redirect(resource.photoURI)
+      else {
+        res.type(resource.photoFormat)
+        res.status(OK).send(resource.photo)
+      }
+    } catch (err) {
+      debug(err)
+      err = BaseExceptionHandler(err)
+      res.status(err.code).json(err)
+    }
+  }
+
 }
 
 module.exports = BaseController
