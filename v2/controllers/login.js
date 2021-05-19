@@ -73,7 +73,7 @@ exports.verifySystemOTP = async function(req, res) {
       let token = generateAccessToken(user, client, true)
 
       // respond with access_token
-      let resp = new BaseResponse({accessToken: token}, httpCodes.OK, {})
+      let resp = new BaseResponse({accessToken: token, user}, httpCodes.OK, {})
       res.status(resp.status).json(resp.getOneResponse)
     } else throw new KYIBadRequestException({ message: 'Incorrect or invalid OTP' })
   } catch (err) {

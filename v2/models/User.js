@@ -78,9 +78,9 @@ const schema = new mongoose.Schema({
   instituteEmail: {
     type: String,
     lowercase: true,
-    validate: isEmail,
+    // validate: isEmail,
     trim: true,
-    required: true,
+    // required: true,
     immutable: true
   },
   personalEmail: {
