@@ -102,7 +102,7 @@ const schema = new mongoose.Schema({
     type: String,
     enum: Object.keys(roles),
     trim: true,
-    default: roles.FACULTY
+    default: roles.STUDENT
   }],
   reputation: {
     type: Number,
@@ -118,7 +118,7 @@ schema.pre('save', function (next) {
   const user  = this
   user.newUser = user.isNew
   if (!user.roles.length) {
-    user.roles.push(roles.STUDENT)
+    user.roles.push(roles.FACULTY)
   } else {
     let rolesSet = new Set(user.roles)
     user.roles = [...rolesSet]
