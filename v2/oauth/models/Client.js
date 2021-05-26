@@ -32,16 +32,16 @@ const schema = new mongoose.Schema({
   }
 }, opts.schemaOptions)
 
-schema.pre("save", async function (next) {
-	const client = this
-	if (client.isNew) {
-		client.secret = generateClientSecret(client)
+schema.pre('save', async function (next) {
+  const client = this
+  if (client.isNew) {
+    client.secret = generateClientSecret(client)
     client.isSystem = false
-	} else {
-	  throw new KYIBadRequestException({message: 'Cannot modify client'})
+  } else {
+	  throw new KYIBadRequestException({ message: 'Cannot modify client' })
   }
-	next();
-});
+  next()
+})
 
 /* Schema Hooks */
 schema.methods.toJSON = function () {

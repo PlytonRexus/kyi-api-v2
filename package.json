@@ -29,6 +29,7 @@
     "express-brute-mongoose": "^1.1.0",
     "gmail-send": "^1.8.10",
     "helmet": "^4.6.0",
+    "if-script": "^0.2.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.16",
     "mongoose-delete": "^0.5.3",

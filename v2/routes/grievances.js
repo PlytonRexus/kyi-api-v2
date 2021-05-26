@@ -10,7 +10,7 @@ class GrievancesRoute extends BaseRoute {
   // TODO: Add routes mentioned at the top
 
   additionalControllers (router) {
-    let r = router || this.router
+    const r = router || this.router
     r.use('/views', grievanceViewsRoutes)
     r.use('/votes', grievanceVotesRoutes)
     return r

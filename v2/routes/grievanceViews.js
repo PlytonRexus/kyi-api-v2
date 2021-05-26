@@ -6,7 +6,7 @@ const grievanceViewsController = require('../controllers/grievanceViews')
 class GrievanceViewsRoute extends BaseRoute {
   additionalControllers () {
     // TODO: Add routes mentioned at the top
-    super.additionalControllers();
+    super.additionalControllers()
   }
 }
 

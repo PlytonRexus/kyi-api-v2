@@ -47,7 +47,7 @@ const bruteforce = function () {
 }
 
 const parseRequest = function (req, res, next) {
-  let params = req.query
+  const params = req.query
   if (params.filter) req.filterQuery = filterParams(params.filter)
   if (params.include) req.includeQuery = includeParams(params.include)
   next()

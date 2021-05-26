@@ -1,6 +1,6 @@
 const permissions = {
   DEAN: {
-    users: ['write:self', 'read:self', 'read:others' ],
+    users: ['write:self', 'read:self', 'read:others'],
     grievances: [],
     answers: [],
     votes: []

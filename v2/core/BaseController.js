@@ -6,6 +6,7 @@ const { OK, CREATED } = require('../constants/httpCodes')
 const { compressImageBuffer } = require('../utils/content')
 const BaseResponse = require('./BaseResponse')
 const BaseExceptionHandler = require('./BaseExceptionHandler')
+const KYIBadRequestException = require('../exceptions/KYIBadRequestException')
 
 class BaseController {
   constructor (Entity) {
@@ -97,10 +98,10 @@ class BaseController {
       const resource = await this.Entity.findById(req.params.id)
       if (resource && resource.photoURI)
         res.redirect(resource.photoURI)
-      else {
+      else if (!!resource) {
         res.type(resource.photoFormat)
         res.status(OK).send(resource.photo)
-      }
+      } else throw new KYIBadRequestException({message: 'Not found', name: 'Resource not found'})
     } catch (err) {
       debug(err)
       err = BaseExceptionHandler(err)

@@ -32,8 +32,7 @@ schema.plugin(safeDelete, opts.safeDeleteOptions)
 
 schema.pre('save', function (next) {
   const otp = this
-  if (otp.isNew)
-    otp.expires = Date.now() + (parseInt(process.env.OTP_VALIDITY || 20 * 60 * 1000))
+  if (otp.isNew) { otp.expires = Date.now() + (parseInt(process.env.OTP_VALIDITY || 20 * 60 * 1000)) }
   next()
 })
 

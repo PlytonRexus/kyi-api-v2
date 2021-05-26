@@ -10,10 +10,7 @@ class BaseModelOptions {
       deletedBy: true,
       deletedAt: true
     }
-
   }
-
 }
 
 module.exports = BaseModelOptions
-

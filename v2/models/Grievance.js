@@ -1,10 +1,10 @@
 // upvote, downvote, views, public/private
-const mongoose  = require('mongoose')
+const mongoose = require('mongoose')
 const safeDelete = require('mongoose-delete')
 
 const { isClean } = require('../utils/validation')
-const BaseModelOptions = require('../core/BaseModelOptions'),
-  opts = new BaseModelOptions()
+const BaseModelOptions = require('../core/BaseModelOptions')
+const opts = new BaseModelOptions()
 
 const schema = new mongoose.Schema({
   title: {
@@ -86,4 +86,3 @@ module.exports = Grievance
 // Answers
 // GVotes
 // AVotes?
-

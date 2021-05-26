@@ -14,7 +14,7 @@ const generateClientSecret = function (client) {
   })
 }
 
-const verifyClientSecret = function(token) {
+const verifyClientSecret = function (token) {
   try {
     return jwt.verify(token, secret)
   } catch (e) {

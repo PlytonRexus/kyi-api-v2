@@ -1,4 +1,4 @@
-const mongoose  = require('mongoose')
+const mongoose = require('mongoose')
 const safeDelete = require('mongoose-delete')
 
 const BaseModelOptions = require('../core/BaseModelOptions')
@@ -16,8 +16,8 @@ const schema = new mongoose.Schema({
   },
   admissionNumber: {
     type: String,
-    // validate: isAdmissionNumber,
-    // unique: true,
+    // validate: isAdmissionNumber, // faculty error
+    // unique: true, // faculty error
     trim: true,
     immutable: true
   },
@@ -58,7 +58,7 @@ const schema = new mongoose.Schema({
     trim: true
   },
   clubs: [{
-    type: String,
+    type: String
     // enum: clubs
   }],
   about: {
@@ -78,9 +78,9 @@ const schema = new mongoose.Schema({
   instituteEmail: {
     type: String,
     lowercase: true,
-    // validate: isEmail,
+    // validate: isEmail, // faculty error
     trim: true,
-    // required: true,
+    // required: true, // faculty error
     immutable: true
   },
   personalEmail: {
@@ -91,8 +91,8 @@ const schema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    trim: true,
-    // validate: isPhoneNumber
+    trim: true
+    // validate: isPhoneNumber // faculty error
   },
   newUser: {
     type: Boolean,
@@ -115,12 +115,12 @@ const schema = new mongoose.Schema({
 }, opts.schemaOptions)
 
 schema.pre('save', function (next) {
-  const user  = this
+  const user = this
   user.newUser = user.isNew
   if (!user.roles.length) {
     user.roles.push(roles.FACULTY)
   } else {
-    let rolesSet = new Set(user.roles)
+    const rolesSet = new Set(user.roles)
     user.roles = [...rolesSet]
   }
   next()

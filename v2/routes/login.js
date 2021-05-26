@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const controller = require('../controllers/login')
 
-router.get('', function(req, res) {
+router.get('', function (req, res) {
   // sendFile
 })
 

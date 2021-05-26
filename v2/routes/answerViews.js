@@ -6,7 +6,7 @@ const answerViewsController = require('../controllers/answerViews')
 class AnswerViewsRoute extends BaseRoute {
   additionalControllers () {
     // TODO: Add routes mentioned at the top
-    super.additionalControllers();
+    super.additionalControllers()
   }
 }
 

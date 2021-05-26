@@ -15,7 +15,7 @@ const generateAccessToken = function (user, client, isSystem) {
   })
 }
 
-const verifyAccessToken = function(token) {
+const verifyAccessToken = function (token) {
   try {
     return jwt.verify(token, secret)
   } catch (e) {
@@ -23,4 +23,4 @@ const verifyAccessToken = function(token) {
   }
 }
 
-module.exports = {generateAccessToken, verifyAccessToken}
+module.exports = { generateAccessToken, verifyAccessToken }

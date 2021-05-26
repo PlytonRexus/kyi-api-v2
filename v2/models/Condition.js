@@ -25,4 +25,4 @@ const schema = new mongoose.Schema({
 
 schema.plugin(safeDelete, opts.safeDeleteOptions)
 
-module.exports = mongoose.model('Condition', schema, "conditions")
+module.exports = mongoose.model('Condition', schema, 'conditions')

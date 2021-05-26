@@ -1,9 +1,9 @@
 const filterParams = function (filterString) {
-  return filterString.split(',').map((v,i) => v.split(':'))
+  return filterString.split(',').map((v, i) => v.split(':'))
     .reduce((accumulated, curr) => {
       return {
         ...accumulated,
-        [curr[0]]: new RegExp(curr[1], "i")
+        [curr[0]]: new RegExp(curr[1], 'i')
       }
     }, {})
 }

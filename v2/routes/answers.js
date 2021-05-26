@@ -9,7 +9,7 @@ const answerVotesRoutes = require('./answerVotes')
 class AnswersRoute extends BaseRoute {
   additionalControllers (router) {
     // TODO: Add routes mentioned at the top
-    let r = router || this.router
+    const r = router || this.router
     r.use('/votes', answerVotesRoutes)
     r.use('/views', answerViewsRoutes)
     return r

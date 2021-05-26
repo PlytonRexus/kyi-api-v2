@@ -4,17 +4,16 @@ const { parseRequest } = require('../utils/middleware')
 class BaseRoute {
   constructor (root, controller, router) {
     this.router = require('express').Router()
-    this.root = root || "/"
+    this.root = root || '/'
     this.controller = controller
     this.entity = controller.Entity
   }
 
   generateControllers () {
-
     const fileFilter = function fileFilter (req, file, callback) {
-      if (file.mimetype === 'image/jpeg'
-        || file.mimetype === 'image/tiff'
-        || file.mimetype === 'image/png') callback(null, true)
+      if (file.mimetype === 'image/jpeg' ||
+        file.mimetype === 'image/tiff' ||
+        file.mimetype === 'image/png') callback(null, true)
       else {
         callback(null, false)
       }
@@ -38,10 +37,9 @@ class BaseRoute {
     return this.router
   }
 
-  additionalControllers() {
+  additionalControllers () {
 
   }
-
 }
 
 module.exports = BaseRoute

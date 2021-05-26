@@ -2,15 +2,15 @@ const crypto = require('../../utils/crypto')
 const nativeCrypto = require('crypto')
 const OTP = require('../models/OTP')
 
-const generateOTP = function() {
+const generateOTP = function () {
   return nativeCrypto.randomInt(100000, 1000000)
 }
 
-const hashOTP = async function(otp) {
+const hashOTP = async function (otp) {
   return await crypto.hash(otp)
 }
 
-const saveOTP = async function(otp, user, client, isUsed = false) {
+const saveOTP = async function (otp, user, client, isUsed = false) {
   // not hashing
   const entity = new OTP({
     userId: user._id,
@@ -22,9 +22,9 @@ const saveOTP = async function(otp, user, client, isUsed = false) {
   return entity.save()
 }
 
-const generateAndSaveOTP = async function(user, client) {
+const generateAndSaveOTP = async function (user, client) {
   const otp = generateOTP()
-  return { otp, entity: await saveOTP (otp, user, client) }
+  return { otp, entity: await saveOTP(otp, user, client) }
 }
 
 module.exports = {
