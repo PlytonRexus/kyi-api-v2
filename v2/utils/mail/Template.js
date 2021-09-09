@@ -46,7 +46,7 @@ class Template {
 
       return str
     }
-  };
+  }
 
   setVariables (str, variables) {
     // for (let a in variables) {

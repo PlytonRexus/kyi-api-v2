@@ -5,7 +5,7 @@ const BaseModelOptions = require('../core/BaseModelOptions')
 const { isMimeType } = require('../utils/validation')
 const { sexes, clubs } = require('../constants/userValues')
 const roles = require('../constants/roles')
-const { isAdmissionNumber, isHouse, isURI, isEmail, isPhoneNumber } = require('../utils/validation')
+const { isAdmissionNumber, isHouse, isURI, isEmail } = require('../utils/validation')
 
 const opts = new BaseModelOptions()
 
@@ -39,6 +39,10 @@ const schema = new mongoose.Schema({
     trim: true
   },
   department: {
+    type: String,
+    trim: true
+  },
+  branch: {
     type: String,
     trim: true
   },
@@ -81,7 +85,7 @@ const schema = new mongoose.Schema({
     // validate: isEmail, // faculty error
     trim: true,
     // required: true, // faculty error
-    immutable: true
+    // immutable: true // email-less data error
   },
   personalEmail: {
     type: String,
@@ -118,7 +122,7 @@ schema.pre('save', function (next) {
   const user = this
   user.newUser = user.isNew
   if (!user.roles.length) {
-    user.roles.push(roles.FACULTY)
+    user.roles.push(roles.STUDENT)
   } else {
     const rolesSet = new Set(user.roles)
     user.roles = [...rolesSet]

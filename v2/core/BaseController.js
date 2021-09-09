@@ -45,11 +45,11 @@ class BaseController {
 
   addOne = async (req, res) => {
     try {
-      const doc = new this.Entity(req.body)
       Object.keys(req.body).forEach(k => {
         if (typeof k === 'string' && k.includes('Id'))
           req.body[k] = req.body.replace(/"/g, '')
       })
+      const doc = new this.Entity(req.body)
       if (req.file) {
         doc.photo = await compressImageBuffer(req.file.buffer, req.file.mimetype)
         doc.photoFormat = req.file.mimetype
